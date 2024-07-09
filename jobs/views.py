@@ -120,6 +120,7 @@ class CreateJobListingView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         new_category_name = form.cleaned_data.get('new_category')
         if new_category_name:
+            # Create the new category if it does not exist
             new_category, created = JobCategory.objects.get_or_create(name=new_category_name)
             form.instance.category = new_category
 
