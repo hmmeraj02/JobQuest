@@ -56,7 +56,7 @@ class JobListing(models.Model):
     requirements = models.TextField()
     location = models.CharField(max_length=255)
     company = models.CharField(max_length=255, default='')
-    category = models.ForeignKey(JobCategory, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(JobCategory, on_delete=models.SET_NULL, null=True, blank=True)
     posted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
