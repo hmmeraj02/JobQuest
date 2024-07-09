@@ -35,9 +35,6 @@ class JobListingForm(forms.ModelForm):
         if not category and not new_category_name:
             raise forms.ValidationError('You must specify either an existing category or a new category.')
 
-        if new_category_name and JobCategory.objects.filter(name=new_category_name).exists():
-            self.add_error('new_category', 'Category already exists.')
-
         return cleaned_data
 
 class JobApplicationForm(forms.ModelForm):
