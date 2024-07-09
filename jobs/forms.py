@@ -17,9 +17,25 @@ class JobSeekerSignUpForm(UserCreationForm):
         fields = ['username', 'email', 'first_name', 'last_name', 'institution_name', 'password1', 'password2']
         
 class JobListingForm(forms.ModelForm):
+    new_category = forms.CharField(max_length=100, required=False, help_text='Add a new category')
+
     class Meta:
         model = JobListing
-        fields = ['title', 'description', 'requirements', 'location', 'company', 'category']
+        fields = ['title', 'description', 'requirements', 'location', 'company', 'category', 'new_category']
+
+    def __init__(self, *args, **kwargs):
+        super(JobListingForm, self).__init__(*args, **kwargs)
+        self.fields['category'].queryset = JobCategory.objects.all()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_category = cleaned_data.get('new_category')
+
+        if new_category:
+            if JobCategory.objects.filter(name=new_category).exists():
+                self.add_error('new_category', 'Category already exists.')
+        
+        return cleaned_data
 
 class JobApplicationForm(forms.ModelForm):
     class Meta:

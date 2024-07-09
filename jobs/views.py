@@ -118,10 +118,16 @@ class CreateJobListingView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('employer_dashboard')
 
     def form_valid(self, form):
+        new_category_name = form.cleaned_data.get('new_category')
+        if new_category_name:
+            new_category, created = JobCategory.objects.get_or_create(name=new_category_name)
+            form.instance.category = new_category
+
         job_listing = form.save(commit=False)
         job_listing.employer = self.request.user
         job_listing.save()
         return redirect(self.success_url)
+
 
 class JobApplicationListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = JobApplication
