@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Job Seeker Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Job Seeker Dashboard</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h3>Your Information</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>First Name:</strong> {{ user.profile.first_name }}</p>
+                    <p><strong>Last Name:</strong> {{ user.profile.last_name }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Institution Name:</strong> {{ user.profile.institution_name }}</p>
+                    <p><strong>Gender:</strong> {{ user.profile.gender }}</p>
+                    <p><strong>Birth Date:</strong> {{ user.profile.birth_date }}</p>
+                    <p><strong>Hired:</strong> {{ user.profile.hired|yesno:"Hired,Not Hired" }}</p>
+                </div>
+            </div>
+            <a href="{% url 'profile_update' %}" class="btn btn-primary mt-3">Update Profile</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h3>Your Applications</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for application in applications %}
+                    <li class="list-group-item">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                            <div class="mb-2 mb-md-0">
+                                <strong>{{ application.job_listing.title }}</strong> - {{ application.job_listing.company }} - {{ application.applied_at }}
+                            </div>
+                            <a href="{% url 'job_application_delete' application.id %}" class="btn btn-danger btn-sm">Withdraw Application</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Employer Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Employer Dashboard</h2>
+    <div class="mb-4">
+        <a href="{% url 'job_create' %}" class="btn btn-primary">Create Job Listing</a>
+    </div>
+
+    <div class="mb-4">
+        <h3>Your Job Listings</h3>
+        <div class="list-group">
+            {% for job in job_listings %}
+                <div class="list-group-item">
+                    <h5>
+                        <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a>
+                        - {{ job.company }} - {{ job.location }}
+                    </h5>
+                    <small>Posted at: {{ job.posted_at }}</small>
+                    <div class="mt-2">
+                        <a href="{% url 'job_update' job.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{% url 'job_delete' job.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <h3>Applications Received</h3>
+        <div class="list-group">
+            {% for job in job_listings %}
+                <div class="list-group-item">
+                    <h5>{{ job.title }}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for application in job.applications.all %}
+                            <li class="list-group-item">
+                                {{ application.job_seeker.username }} - {{ application.applied_at }}
+                                <a href="{% url 'job_applications' job.id %}" class="btn btn-link">View Applications</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Applications for {{ job_listing.title }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Applications for {{ job_listing.title }}</h2>
+    <div class="list-group">
+        {% for application in applications %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ application.job_seeker.username }}</h5>
+                <div class="mb-2">
+                    <a href="{{ application.resume.url }}" target="_blank" class="btn btn-primary btn-sm">View Resume</a>
+                    <a href="{{ application.resume.url }}" download class="btn btn-secondary btn-sm">Download Resume</a>
+                </div>
+                <p class="mb-1">{{ application.cover_letter }}</p>
+            </div>
+        {% empty %}
+            <div class="list-group-item">
+                No applications yet.
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+main {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: #343a40;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+}
+
+h2, h3 {
+    color: #343a40;
+}
+
+button, .btn-primary {
+    background-color: #343a40;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover, .btn-primary:hover {
+    background-color: #495057;
+}

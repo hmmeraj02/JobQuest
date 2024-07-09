@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}JobQuest{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <h1 class="display-4">Welcome to the JobQuest</h1>
+      <p class="lead">Find your dream job or the perfect candidate with ease. Our platform connects job seekers with top employers.</p>
+      <a href="{% url 'job_listings' %}" class="btn btn-primary btn-lg mb-1">Search Jobs</a>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'images/homepage-image.jpg' %}" class="img-fluid" alt="Job search illustration">
+    </div>
+  </div>
+</div>
+{% endblock %}
