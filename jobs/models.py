@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from .constants import GENDER_TYPE
 
 class User(AbstractUser):
     is_employer = models.BooleanField(default=False)
@@ -25,7 +26,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
     institution_name = models.CharField(max_length=255, blank=True, null=True)
-    gender = models.CharField(max_length=10, blank=True, null=True)
+    gender = models.CharField(max_length=10, blank=True, null=True, choices=GENDER_TYPE)
     birth_date = models.DateField(null=True, blank=True)
     hired = models.BooleanField(default=False)
 

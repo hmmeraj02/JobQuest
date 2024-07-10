@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Profile, Job, JobListing, JobApplication, JobCategory
+from .constants import GENDER_TYPE
 
 class EmployerSignUpForm(UserCreationForm):
     class Meta:
@@ -35,3 +36,7 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['institution_name', 'gender', 'birth_date', 'hired']
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+    gender = forms.ChoiceField(choices=GENDER_TYPE, required=False)
