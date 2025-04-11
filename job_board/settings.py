@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'job_board.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgresql://jobquest_88yr_user:pWQ53GUnphKzDMNkiWXZI4lu5YdWnNpQ@dpg-cv4k500gph6c7391dd90-a.oregon-postgres.render.com/jobquest_88yr',
+        default='postgresql://jobquest_illp_user:4T88Y1S0EMqfSPQfuXZKzBhuf9h8GCRz@dpg-cvsgk16r433s73c7350g-a.oregon-postgres.render.com/jobquest_illp',
     )
 }
 
